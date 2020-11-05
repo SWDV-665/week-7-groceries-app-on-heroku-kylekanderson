@@ -9,7 +9,7 @@ To run:
 2. Run `npm install`
 3. Run `ionic serve`
 
-**Note: screenshots can be found in** `screenshots` **folder**
+**Note: screencast can be found in** `screencasts` **folder**
 
 ### Answers to submission questions
 
