@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
+import { GroceriesService } from '../../services/groceries.service';
+import { InputDialogService } from '../../services/input-dialog.service';
 
 
 @Component({
-  selector: 'app-home',
+  selector: 'page-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss']
 })
@@ -12,26 +14,16 @@ export class HomePage {
 
   title = "Grocery";
 
-  items = [
-    {
-      name: "Milk",
-      quantity: 2,
-    },
-    {
-      name: "Bread",
-      quantity: 1,
-    },
-    {
-      name: "Banana",
-      quantity: 3,
-    },
-    {
-      name: "Sugar",
-      quantity: 1,
-    },
-  ];
+  constructor(
+    public toastController: ToastController,
+    public alertController: AlertController,
+    public dataService: GroceriesService,
+    public inputDialogService: InputDialogService
+  ) { }
 
-  constructor(public toastController: ToastController, public alertController: AlertController) { }
+  loadItems() {
+    return this.dataService.getItems();
+  }
 
   async removeItem(item, index) {
     console.log('removing item: ', item, index);
@@ -41,48 +33,14 @@ export class HomePage {
     });
     toast.present();
 
-    this.items.splice(index, 1);
+    this.dataService.removeItem(index);
+  }
+
+  async editItem(item, index) {
+    this.inputDialogService.showPrompt(item, index);
   }
 
   addItem() {
-    this.presentAlertPrompt();
-  }
-
-  async presentAlertPrompt() {
-    const alert = await this.alertController.create({
-      header: 'Add Item',
-      message: 'Please enter item...',
-      cssClass: 'my-custom-class',
-      inputs: [
-        {
-          name: 'name',
-          type: 'text',
-          placeholder: 'Name'
-        },
-        {
-          name: 'quantity',
-          type: 'number',
-          placeholder: 'Quantity'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: data => {
-            console.log('Confirm Cancel', data);
-          }
-        }, 
-        {
-          text: 'Ok',
-          handler: item => {
-            console.log('Confirm Ok', item);
-            this.items.push(item);
-          }
-        }
-      ]
-    });
-    await alert.present();
+    this.inputDialogService.showPrompt();
   }
 }
