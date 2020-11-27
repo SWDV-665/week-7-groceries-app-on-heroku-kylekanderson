@@ -15,7 +15,7 @@ export class GroceriesService {
 
     private dataChangeSubject: Subject<boolean>;
 
-    baseUrl = 'http://localhost:8080';
+    baseUrl = "http://localhost:8080";
 
   constructor(
     public http: HttpClient
@@ -26,7 +26,7 @@ export class GroceriesService {
     this.dataChanged$ = this.dataChangeSubject.asObservable();
   }
 
-  getItems(): Observable<object[]> {
+  getItems(): Observable {
     return this.http.get(this.baseUrl + '/api/groceries').pipe(
       map(this.extractData),
       catchError(this.handleError)

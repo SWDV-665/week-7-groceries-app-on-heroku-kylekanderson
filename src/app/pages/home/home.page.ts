@@ -15,16 +15,26 @@ const { Share } = Plugins;
 export class HomePage {
 
   title = "Grocery";
+  items = [];
+  errorMessage: string;
 
   constructor(
     public toastController: ToastController,
     public alertController: AlertController,
     public dataService: GroceriesService,
     public inputDialogService: InputDialogService
-  ) { }
+  ) {
+    dataService.dataChanged$.subscribe((dataChanged: boolean) => {
+      this.loadItems();
+    });
+  }
 
   loadItems() {
-    return this.dataService.getItems();
+    return this.dataService.getItems()
+      .subscribe(
+        items => this.items = items,
+        error => this.errorMessage = <any>error
+      )
   }
 
   async removeItem(item, index) {
