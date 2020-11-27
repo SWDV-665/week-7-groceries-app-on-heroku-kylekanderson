@@ -12,7 +12,7 @@ export class InputDialogService {
     public dataService: GroceriesService,
     public alertController: AlertController
   ) { }
-  async showPrompt(item?, index?) {
+  async showPrompt(item?, index?, itemId?) {
     const alert = await this.alertController.create({
       header: item ? 'Edit Item' : 'Add Item',
       message: item ? 'Please edit item...' : 'Please add item',
@@ -45,7 +45,7 @@ export class InputDialogService {
           handler: item => {
             console.log('Confirm Ok', item);
             if (index !== undefined) {
-              this.dataService.editItem(item, index);
+              this.dataService.editItem(item, itemId);
             }
             else {
               this.dataService.addItem(item);

@@ -15,7 +15,7 @@ const { Share } = Plugins;
 export class HomePage {
 
   title = "Grocery";
-  items = [];
+  items: any = [];
   errorMessage: string;
 
   constructor(
@@ -24,17 +24,17 @@ export class HomePage {
     public dataService: GroceriesService,
     public inputDialogService: InputDialogService
   ) {
+    this.loadItems();
     dataService.dataChanged$.subscribe((dataChanged: boolean) => {
       this.loadItems();
     });
   }
 
   loadItems() {
-    return this.dataService.getItems()
-      .subscribe(
-        items => this.items = items,
-        error => this.errorMessage = <any>error
-      )
+    this.dataService.getItems().subscribe(response => {
+      this.items = response;
+      console.log(this.items);
+    })
   }
 
   async removeItem(item, index) {
@@ -45,7 +45,7 @@ export class HomePage {
     });
     toast.present();
 
-    this.dataService.removeItem(index);
+    this.dataService.removeItem(item);
   }
 
   async shareItem(item, index) {
@@ -64,7 +64,7 @@ export class HomePage {
   }
 
   async editItem(item, index) {
-    this.inputDialogService.showPrompt(item, index);
+    this.inputDialogService.showPrompt(item, index, item._id);
   }
 
   addItem() {

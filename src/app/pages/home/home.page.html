@@ -16,13 +16,13 @@
 
   <ion-content padding>
 
-    <h3 class="ion-text-center no-item" *ngIf="loadItems().length === 0">
+    <h3 class="ion-text-center no-item" *ngIf="items.length === 0">
       No items available on the list!
     </h3>
 
     <ion-list>
 
-      <ion-item-sliding *ngFor="let item of loadItems(); let i = index">
+      <ion-item-sliding *ngFor="let item of items; let i = index">
         <ion-item>
           <ion-text>
             <h2>{{ item.name }}</h2>
