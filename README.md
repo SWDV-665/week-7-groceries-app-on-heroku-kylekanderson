@@ -2,22 +2,24 @@
 
 ## Kyle Anderson
 
-## Week 5 Assignment Submissions
+## Week 6 Assignment Submission
 
 To run:
 1. Clone repository
-2. Run `npm install`
-3. Run `ionic serve`
+2. Ensure a MongoDB instance with the `Groceries` database is up and running
+3. Ensure the `groceries-server` RESTful service layer is up and running
+4. Run `npm install`
+5. Run `ionic serve`
 
-**Note: screencast can be found in** `screencasts` **folder; screenshots can be found in** `screenshots` **folder**
+**Note: screencast can be found in** `screencasts` **folder**
 
 ### Answers to submission questions
 
 How many hours do you estimate you used completing this assignment?
-I estimate that I spent about 3 hours completing this assignment
+I estimate that I spent about 5 hours completing this assignment
 
 What was easiest for you when completing this assignment?
-The information provided in the module this week made the assignment easy to follow along with and complete.
+Because I had already implemented a RESTful service layer and CRUD operations in my final project, I was able to refer to that implementation to help with completing this assignment this week.
 
 What was the most difficult challenge you experienced when completing this assignment?
-The only slightly difficult challenge I faced with this assignment was incorporating Capacitor (rather than Cordova) for the native sharing plug-in. There are some differences in how it is incorporated, but by reading through the documentation I was able to figure it out.
+Observables and the RXJS library are a difficult concept to understand. I struggled with implementing those concepts both in my final project and in the assignment this week.
