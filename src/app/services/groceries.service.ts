@@ -15,7 +15,7 @@ export class GroceriesService {
 
   private dataChangeSubject: Subject<boolean>;
 
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://groceries-api-server.herokuapp.com";
 
   constructor(
     public http: HttpClient
